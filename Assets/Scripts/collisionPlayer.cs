@@ -58,10 +58,10 @@ public class collisionPlayer : MonoBehaviour
             hearts--;
             SceneManager.LoadScene("SampleScene");
         }
-        //if (collision.gameobject.name == "placapresion")
-        //{
-        //    pared.setactive(false);
-        //}
+        if (collision.gameObject.name == "placapresion")
+        {
+            pared.SetActive(false);
+        }
     }
     IEnumerator ExampleCoroutine()
     {

@@ -10,7 +10,7 @@ public class placaPresionMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            transform.position = new Vector3(3.5f, -0.06f, 8.3f);
+            transform.position = new Vector3(5.42f, -0.06f, 1.6f);
         }
     }
 
@@ -18,7 +18,7 @@ public class placaPresionMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            transform.position = new Vector3(3.5f, 0, 8.3f);
+            transform.position = new Vector3(5.42f, 0, 1.6f);
         }
     }
 }

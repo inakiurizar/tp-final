@@ -7,8 +7,11 @@ public class collisionPlayer : MonoBehaviour
 {
     Vector3 startPosition;
     public static int hearts = 3;
-    public Text corazones, gameOver;
+    public int vida = 100;
+    public Text corazones, gameOver, vidatxt;
     public GameObject player, camara, keysText, restartScene, pared;
+    int itstrue = 20;
+    int danioDardo = 20;
 
     void Start()
     {
@@ -16,17 +19,20 @@ public class collisionPlayer : MonoBehaviour
         gameOver.enabled = false;
         camara.SetActive(false);
         restartScene.SetActive(false);
-        StartCoroutine(ExampleCoroutine());
+        //StartCoroutine(ExampleCoroutine());
+
     }
 
     void Update()
     {
         corazones.text = hearts.ToString();
+        vidatxt.text = vida.ToString();
         if (transform.position.y < 0)
         {
             transform.position = new Vector3(0, 1, 0);
             transform.eulerAngles = new Vector3(0, 0, 0);
             hearts--;
+            vida--;
             SceneManager.LoadScene("SampleScene");
         }
     }
@@ -61,15 +67,32 @@ public class collisionPlayer : MonoBehaviour
         if (collision.gameObject.name == "placapresion")
         {
             pared.SetActive(false);
+            StartCoroutine(paredTimer());
+        }
+        if(collision.gameObject.name == "dardo(Clone)")
+        {
+            StartCoroutine(dardoTimer());
         }
     }
-    IEnumerator ExampleCoroutine()
+
+    IEnumerator paredTimer()
     {
         while (true)
         {
             yield return new WaitForSeconds(3);
             pared.SetActive(true);
         }
+    }
+    IEnumerator dardoTimer()
+    {
+        int i = 0;
+        while (itstrue > i)
+        {
+            vida--;
+            yield return new WaitForSeconds(1);
+            i++;
+        }
+
     }
 
 

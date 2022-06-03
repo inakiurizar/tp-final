@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class keyCounter : MonoBehaviour
 {
-    public static int keycounter;
-    public Text keys;
+    public static int blue_keycounter, green_keycounter, orange_keycounter;
+
+    public Text blue_key, green_key, orange_key;
 
     void Start()
     {
-        keycounter = 0;
+        blue_keycounter = 0;
+        green_keycounter = 0;
+        orange_keycounter = 0;
     }
     // Update is called once per frame
     void Update()
     {
-        keys.text = "Llaves : " + keycounter.ToString();
+        blue_key.text = "Llave azul: " + blue_keycounter.ToString();
+        green_key.text = "Llave verde: " + green_keycounter.ToString();
+        orange_key.text = "Llave naranja: " + orange_keycounter.ToString();
     }
 }

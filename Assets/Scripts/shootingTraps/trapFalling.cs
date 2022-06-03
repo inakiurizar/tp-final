@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class trapGun : MonoBehaviour
+public class trapFalling : MonoBehaviour
 {
-    public GameObject bullet;
-    float sec = 1f;
+    public GameObject block;
+    GameObject clon;
     float secDeltaTime;
 
     void Update()
@@ -14,14 +14,13 @@ public class trapGun : MonoBehaviour
         if (secDeltaTime <= 0)
         {
             startPointFire();
-            secDeltaTime += sec;
+            secDeltaTime++;
         }
     }
 
     public void startPointFire()
     {
-        GameObject clon;
-        clon = Instantiate(bullet, transform.position, transform.rotation);
-        Destroy(clon, 5);
+        clon = Instantiate(block, transform.position, transform.rotation);
     }
+
 }

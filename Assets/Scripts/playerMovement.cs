@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class playerMovement : MonoBehaviour
 {
     public GameObject cam1, cam2;
-    float movement = 0.1f;
-    float rotation = 1.5f;
+    float movement = 0.15f;
+    float rotation = 2f;
     int JumpForce = 5;
     bool hasJump = true;
     Rigidbody rb;

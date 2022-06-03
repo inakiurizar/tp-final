@@ -10,7 +10,6 @@ public class collisionPlayer : MonoBehaviour
     public int vida = 100;
     public Text corazones, gameOver, vidatxt;
     public GameObject player, camara, keysText, restartScene, pared;
-    int itstrue = 20;
     int danioDardo = 20;
 
     void Start()
@@ -35,6 +34,14 @@ public class collisionPlayer : MonoBehaviour
             vida--;
             SceneManager.LoadScene("SampleScene");
         }
+        if(vida <= 0)
+        {
+            hearts--;
+            vida += 100;
+            transform.position = startPosition;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -55,21 +62,21 @@ public class collisionPlayer : MonoBehaviour
             corazones.enabled = false;
             keysText.SetActive(false);
             restartScene.SetActive(true);
+            vidatxt.enabled = false;
         }
 
         if (collision.gameObject.name == "bala(Clone)")
         {
-            transform.position = startPosition;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            hearts--;
-            SceneManager.LoadScene("SampleScene");
+            //transform.position = startPosition;
+            //transform.eulerAngles = new Vector3(0, 0, 0);
+            vida -= 50;
+            //SceneManager.LoadScene("SampleScene");
         }
         if (collision.gameObject.name == "placapresion")
         {
-            pared.SetActive(false);
             StartCoroutine(paredTimer());
         }
-        if(collision.gameObject.name == "dardo(Clone)")
+        if (collision.gameObject.name == "dardo(Clone)")
         {
             StartCoroutine(dardoTimer());
         }
@@ -79,6 +86,7 @@ public class collisionPlayer : MonoBehaviour
     {
         while (true)
         {
+            pared.SetActive(false);
             yield return new WaitForSeconds(3);
             pared.SetActive(true);
         }
@@ -86,7 +94,7 @@ public class collisionPlayer : MonoBehaviour
     IEnumerator dardoTimer()
     {
         int i = 0;
-        while (itstrue > i)
+        while (danioDardo > i)
         {
             vida--;
             yield return new WaitForSeconds(1);

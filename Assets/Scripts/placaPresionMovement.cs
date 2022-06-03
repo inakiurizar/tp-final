@@ -10,15 +10,16 @@ public class placaPresionMovement : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            transform.position = new Vector3(5.42f, -0.06f, 1.6f);
+            transform.position = new Vector3(5.42f, -0.14f, 1.6f);
+            Destroy(pared, 0);
         }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            transform.position = new Vector3(5.42f, 0, 1.6f);
-        }
-    }
+    //void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.name == "Player")
+    //    {
+    //        transform.position = new Vector3(5.42f, 0, 1.6f);
+    //    }
+    //}
 }

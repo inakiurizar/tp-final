@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class trapGun : MonoBehaviour
 {
-    public GameObject bullet;
-    float secDeltaTime;
+    public GameObject bala;
+    GameObject clon;
 
-    void Update()
+    //public GameObject bullet;
+    //float secDeltaTime;
+    void Start()
     {
-        secDeltaTime -= Time.deltaTime;
-        if (secDeltaTime <= 0)
+        StartCoroutine(fireRate());
+    }
+    IEnumerator fireRate()
+    {
+        yield return new WaitForSeconds(1);
+        while (true)
         {
-            startPointFire();
-            secDeltaTime++;
+
+            clon = Instantiate(bala, transform.position, transform.rotation);
+            yield return new WaitForSeconds(0.5f); 
+            Destroy(clon, 5);
         }
     }
+    //void Update()
+    //{
+    //    secDeltaTime -= Time.deltaTime;
+    //    if (secDeltaTime <= 0)
+    //    {
+    //        startPointFire();
+    //        secDeltaTime++;
+    //    }
+    //}
 
-    public void startPointFire()
-    {
-        GameObject clon;
-        clon = Instantiate(bullet, transform.position, transform.rotation);
-        Destroy(clon, 5);
-    }
+    //public void startPointFire()
+    //{
+    //    GameObject clon;
+    //    clon = Instantiate(bullet, transform.position, transform.rotation);
+    //    Destroy(clon, 5);
+    //}
 }

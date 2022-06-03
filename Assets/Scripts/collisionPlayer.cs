@@ -74,23 +74,41 @@ public class collisionPlayer : MonoBehaviour
         }
         if (collision.gameObject.name == "placapresion")
         {
-            StartCoroutine(paredTimer());
+            StartCoroutine(paredTimerDesac());
+            StartCoroutine(paredTimerAct());
         }
         if (collision.gameObject.name == "dardo(Clone)")
         {
             StartCoroutine(dardoTimer());
         }
+        if(collision.gameObject.name == "block(clone)")
+        {
+            hearts--;
+            vida += 100;
+            transform.position = startPosition;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
-    IEnumerator paredTimer()
+    IEnumerator paredTimerDesac()
     {
         while (true)
         {
             pared.SetActive(false);
             yield return new WaitForSeconds(3);
+        }
+    }
+
+    IEnumerator paredTimerAct()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
             pared.SetActive(true);
         }
     }
+
     IEnumerator dardoTimer()
     {
         int i = 0;

@@ -6,21 +6,36 @@ public class trapFalling : MonoBehaviour
 {
     public GameObject block;
     GameObject clon;
-    float secDeltaTime;
 
-    void Update()
+    void Start()
     {
-        secDeltaTime -= Time.deltaTime;
-        if (secDeltaTime <= 0)
+        StartCoroutine(blockFallRate());
+    }
+
+    IEnumerator blockFallRate()
+    {
+        
+        while (true)
         {
-            startPointFire();
-            secDeltaTime++;
+            clon = Instantiate(block, transform.position, transform.rotation);
+            yield return new WaitForSeconds(1);
         }
     }
+    //float secDeltaTime;
 
-    public void startPointFire()
-    {
-        clon = Instantiate(block, transform.position, transform.rotation);
-    }
+    //void Update()
+    //{
+    //    secDeltaTime -= Time.deltaTime;
+    //    if (secDeltaTime <= 0)
+    //    {
+    //        startPointFire();
+    //        secDeltaTime++;
+    //    }
+    //}
+
+    //public void startPointFire()
+    //{
+    //    clon = Instantiate(block, transform.position, transform.rotation);
+    //}
 
 }

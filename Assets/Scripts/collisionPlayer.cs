@@ -18,8 +18,7 @@ public class collisionPlayer : MonoBehaviour
         gameOver.enabled = false;
         camara.SetActive(false);
         restartScene.SetActive(false);
-        //StartCoroutine(ExampleCoroutine());
-
+        StartCoroutine(paredTimerAct());
     }
 
     void Update()
@@ -67,15 +66,11 @@ public class collisionPlayer : MonoBehaviour
 
         if (collision.gameObject.name == "bala(Clone)")
         {
-            //transform.position = startPosition;
-            //transform.eulerAngles = new Vector3(0, 0, 0);
             vida -= 50;
-            //SceneManager.LoadScene("SampleScene");
         }
         if (collision.gameObject.name == "placapresion")
         {
-            StartCoroutine(paredTimerDesac());
-            StartCoroutine(paredTimerAct());
+            pared.SetActive(false);
         }
         if (collision.gameObject.name == "dardo(Clone)")
         {
@@ -83,20 +78,11 @@ public class collisionPlayer : MonoBehaviour
         }
         if(collision.gameObject.name == "block(clone)")
         {
-            hearts--;
-            vida += 100;
             transform.position = startPosition;
             transform.eulerAngles = new Vector3(0, 0, 0);
+            hearts--;
+            vida += 100;
             SceneManager.LoadScene("SampleScene");
-        }
-    }
-
-    IEnumerator paredTimerDesac()
-    {
-        while (true)
-        {
-            pared.SetActive(false);
-            yield return new WaitForSeconds(3);
         }
     }
 

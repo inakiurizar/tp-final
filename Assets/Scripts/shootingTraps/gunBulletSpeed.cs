@@ -17,7 +17,7 @@ public class gunBulletSpeed : MonoBehaviour
     {
         if (collision.gameObject.tag == "piso")
         {
-            Destroy(clon);
+            Destroy(bala);
         }
     }
 }

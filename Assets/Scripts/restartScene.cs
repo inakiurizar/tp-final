@@ -12,8 +12,9 @@ public class restartScene : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R))
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             collisionPlayer.hearts = 3;
+            Debug.Log("Working just fine");
         }
     }
 

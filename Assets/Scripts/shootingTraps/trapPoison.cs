@@ -23,7 +23,6 @@ public class trapPoison : MonoBehaviour
     {
         while (true)
         {
-
             clon = Instantiate(dardo, transform.position, transform.rotation);
             yield return new WaitForSeconds(0.5f);
             Destroy(clon, 5);

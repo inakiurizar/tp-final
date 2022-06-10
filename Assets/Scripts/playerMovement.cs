@@ -15,7 +15,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        shift = movement * 2;
+        //shift = movement * 2;
         cam2.SetActive(false);
     }
 
@@ -45,23 +45,23 @@ public class playerMovement : MonoBehaviour
                 hasJump = false;
             }
         }
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(0, 0, shift);
-            cam1.SetActive(false);
-            cam2.SetActive(true);
-        }
-        else
-        {
-            cam2.SetActive(false);
-            cam1.SetActive(true);
-        }
+        //if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+        //{
+        //    transform.Translate(0, 0, shift);
+        //    //cam1.SetActive(false);
+        //    //cam2.SetActive(true);
+        //}
+        //else
+        //{
+        //    //cam2.SetActive(false);
+        //    //cam1.SetActive(true);
+        //}
 
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Plataforma")
+        if (collision.gameObject.tag == "piso")
         {
             hasJump = true;
         }

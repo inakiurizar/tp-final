@@ -11,7 +11,8 @@ public class collisionPlayer : MonoBehaviour
     public Text corazones, gameOver, vidatxt;
     public GameObject player, camara, keysText, restartScene, pared;
     int danioDardo = 20;
-
+    bool isHit = true;
+    int counter = 0;
     void Start()
     {
         startPosition = transform.position;
@@ -31,7 +32,7 @@ public class collisionPlayer : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
             hearts--;
             vida--;
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if(vida <= 0)
         {
@@ -39,18 +40,18 @@ public class collisionPlayer : MonoBehaviour
             vida += 100;
             transform.position = startPosition;
             transform.eulerAngles = new Vector3(0, 0, 0);
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Obstacle")
+        if (collision.gameObject.tag == "obstacle")
         {
             transform.position = startPosition;
             transform.eulerAngles = new Vector3(0, 0, 0);
             hearts--;
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (hearts == 0)
@@ -64,9 +65,11 @@ public class collisionPlayer : MonoBehaviour
             vidatxt.enabled = false;
         }
 
-        if (collision.gameObject.name == "bala(Clone)")
+        if (collision.gameObject.name == "bala(Clone)" && isHit)
         {
             vida -= 50;
+            isHit = false;
+            StartCoroutine(ishit());
         }
         if (collision.gameObject.name == "placapresion")
         {
@@ -75,17 +78,38 @@ public class collisionPlayer : MonoBehaviour
         if (collision.gameObject.name == "dardo(Clone)")
         {
             StartCoroutine(dardoTimer());
+            counter++;
         }
-        if(collision.gameObject.name == "block(clone)")
+        if(collision.gameObject.name == "block(Clone)")
         {
             transform.position = startPosition;
             transform.eulerAngles = new Vector3(0, 0, 0);
             hearts--;
-            vida += 100;
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-
+    IEnumerator dardoTimer()
+    {
+        int i = 0;
+        if(counter > 1)
+        {
+            danioDardo *= counter;
+        }
+        while (danioDardo > i)
+        {
+            vida--;
+            yield return new WaitForSeconds(1);
+            i++;
+        }
+    }
+    IEnumerator ishit()
+    {
+        if(isHit == false)
+        {
+            yield return new WaitForSeconds(3);
+            isHit = true;
+        }
+    }
     IEnumerator paredTimerAct()
     {
         while (true)
@@ -93,18 +117,6 @@ public class collisionPlayer : MonoBehaviour
             yield return new WaitForSeconds(3);
             pared.SetActive(true);
         }
-    }
-
-    IEnumerator dardoTimer()
-    {
-        int i = 0;
-        while (danioDardo > i)
-        {
-            vida--;
-            yield return new WaitForSeconds(1);
-            i++;
-        }
-
     }
 
 

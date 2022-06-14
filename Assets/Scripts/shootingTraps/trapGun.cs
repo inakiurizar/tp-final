@@ -6,7 +6,7 @@ public class trapGun : MonoBehaviour
 {
     public GameObject bala;
     GameObject clon;
-
+    public AUDIODEATH AUD;
     //public GameObject bullet;
     //float secDeltaTime;
     void Start()
@@ -20,6 +20,7 @@ public class trapGun : MonoBehaviour
         {
 
             clon = Instantiate(bala, transform.position, transform.rotation);
+            AUD.playClip();
             yield return new WaitForSeconds(0.5f); 
             Destroy(clon, 5);
         }

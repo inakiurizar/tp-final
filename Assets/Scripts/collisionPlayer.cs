@@ -8,15 +8,18 @@ public class collisionPlayer : MonoBehaviour
     Vector3 startPosition;
     public static int hearts = 3;
     public int vida = 100;
-    public Text corazones, gameOver, vidatxt;
-    public GameObject player, camara, keysText, restartScene, pared;
+    public Text corazones, gameOver, vidatxt, ganaste, TIEMPO, TUTIEMPOFUEDE;
+    public GameObject player, camara, keyBlue, keyGreen, keyOrange, restartScene, pared;
     int danioDardo = 20;
     bool isHit = true;
     int counter = 0;
+    public AudioSource MUSICAFONDO;
+
     void Start()
     {
         startPosition = transform.position;
         gameOver.enabled = false;
+        ganaste.enabled = false;
         camara.SetActive(false);
         restartScene.SetActive(false);
         StartCoroutine(paredTimerAct());
@@ -24,6 +27,8 @@ public class collisionPlayer : MonoBehaviour
 
     void Update()
     {
+        TIEMPO.text = Mathf.Floor(Time.time).ToString();
+
         corazones.text = hearts.ToString();
         vidatxt.text = vida.ToString();
         if (transform.position.y < 0)
@@ -36,10 +41,11 @@ public class collisionPlayer : MonoBehaviour
         }
         if(vida <= 0)
         {
-            hearts--;
-            vida += 100;
-            transform.position = startPosition;
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            //TIEMPO.text == 0.ToString();
+            //hearts--;
+            //vida += 100;
+            //transform.position = startPosition;
+            //transform.eulerAngles = new Vector3(0, 0, 0);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -60,9 +66,9 @@ public class collisionPlayer : MonoBehaviour
             gameOver.enabled = true;
             camara.SetActive(true);
             corazones.enabled = false;
-            keysText.SetActive(false);
             restartScene.SetActive(true);
             vidatxt.enabled = false;
+            MUSICAFONDO.enabled = false;
         }
 
         if (collision.gameObject.name == "bala(Clone)" && isHit)
@@ -86,6 +92,19 @@ public class collisionPlayer : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
             hearts--;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if(collision.gameObject.name == "placapresionVerde")
+        {
+            player.SetActive(false);
+            camara.SetActive(true);
+            corazones.enabled = false;
+            keyBlue.SetActive(false);
+            keyGreen.SetActive(false);
+            keyOrange.SetActive(false);
+            restartScene.SetActive(true);
+            vidatxt.enabled = false;
+            ganaste.enabled = true;
+            MUSICAFONDO.enabled = false;
         }
     }
     IEnumerator dardoTimer()

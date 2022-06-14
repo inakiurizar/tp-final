@@ -10,5 +10,11 @@ public class dartBulletSpeed : MonoBehaviour
     {
         transform.Translate(speed * Time.deltaTime, 0, 0);
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "piso")
+        {
+            Destroy(bala);
+        }
+    }
 }

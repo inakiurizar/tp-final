@@ -13,7 +13,7 @@ public class blockSpeed : MonoBehaviour
     }
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Plataforma")
+        if (col.gameObject.name == "Cube (1)")
         {
             Destroy(clon);
         }

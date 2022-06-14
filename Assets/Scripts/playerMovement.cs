@@ -65,5 +65,9 @@ public class playerMovement : MonoBehaviour
         {
             hasJump = true;
         }
+        if(collision.gameObject.tag == "trap")
+        {
+            hasJump = true;
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - piso
   - obstacle
+  - trap
   layers:
   - Default
   - TransparentFX

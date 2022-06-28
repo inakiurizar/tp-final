@@ -20,7 +20,6 @@ public class trapGun : MonoBehaviour
         {
 
             clon = Instantiate(bala, transform.position, transform.rotation);
-            AUD.playClip();
             yield return new WaitForSeconds(0.5f); 
             Destroy(clon, 5);
         }

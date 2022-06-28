@@ -11,7 +11,7 @@ public class gunBulletSpeed : MonoBehaviour
     void Update()
     {
         clon = bala;
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(0, speed * Time.deltaTime, 0);
     }
     void OnCollisionEnter(Collision collision)
     {

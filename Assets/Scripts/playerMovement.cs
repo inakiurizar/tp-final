@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class playerMovement : MonoBehaviour
 {
-    public GameObject cam1, cam2;
+    public GameObject cam1;
     float movement = 0.15f;
     float rotation = 2f;
     int JumpForce = 5;
@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         //shift = movement * 2;
-        cam2.SetActive(false);
+        //cam2.SetActive(false);
     }
 
     void Update()
@@ -61,7 +61,7 @@ public class playerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "piso")
+        if (collision.gameObject.tag == "NEWFLOOR")
         {
             hasJump = true;
         }

@@ -8,7 +8,7 @@ public class dartBulletSpeed : MonoBehaviour
     public GameObject bala;
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(0, speed * Time.deltaTime, 0);
     }
     void OnCollisionEnter(Collision collision)
     {

@@ -52,59 +52,63 @@ public class collisionPlayer : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "obstacle")
+        if(collision.gameObject.name == "mapaJuego")
         {
-            transform.position = startPosition;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            hearts--;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            Debug.Log("ITS WORKING");
+            if (collision.gameObject.tag == "obstacle")
+            {
+                transform.position = startPosition;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                hearts--;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
 
-        if (hearts == 0)
-        {
-            player.SetActive(false);
-            gameOver.enabled = true;
-            camara.SetActive(true);
-            corazones.enabled = false;
-            restartScene.SetActive(true);
-            vidatxt.enabled = false;
-            MUSICAFONDO.enabled = false;
-        }
+            if (hearts == 0)
+            {
+                player.SetActive(false);
+                gameOver.enabled = true;
+                camara.SetActive(true);
+                corazones.enabled = false;
+                restartScene.SetActive(true);
+                vidatxt.enabled = false;
+                MUSICAFONDO.enabled = false;
+            }
 
-        if (collision.gameObject.name == "bala(Clone)" && isHit)
-        {
-            vida -= 50;
-            isHit = false;
-            StartCoroutine(ishit());
-        }
-        if (collision.gameObject.name == "placapresion")
-        {
-            pared.SetActive(false);
-        }
-        if (collision.gameObject.name == "dardo(Clone)")
-        {
-            StartCoroutine(dardoTimer());
-            counter++;
-        }
-        if(collision.gameObject.name == "block(Clone)")
-        {
-            transform.position = startPosition;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            hearts--;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        if(collision.gameObject.name == "placapresionVerde")
-        {
-            player.SetActive(false);
-            camara.SetActive(true);
-            corazones.enabled = false;
-            keyBlue.SetActive(false);
-            keyGreen.SetActive(false);
-            keyOrange.SetActive(false);
-            restartScene.SetActive(true);
-            vidatxt.enabled = false;
-            ganaste.enabled = true;
-            MUSICAFONDO.enabled = false;
+            if (collision.gameObject.name == "bala(Clone)" && isHit)
+            {
+                vida -= 50;
+                isHit = false;
+                StartCoroutine(ishit());
+            }
+            if (collision.gameObject.name == "placapresion")
+            {
+                pared.SetActive(false);
+            }
+            if (collision.gameObject.name == "dardo(Clone)")
+            {
+                StartCoroutine(dardoTimer());
+                counter++;
+            }
+            if (collision.gameObject.name == "block(Clone)")
+            {
+                transform.position = startPosition;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                hearts--;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            if (collision.gameObject.name == "placapresionVerde" && keyCounter.green_keycounter == 1)
+            {
+                player.SetActive(false);
+                camara.SetActive(true);
+                corazones.enabled = false;
+                keyBlue.SetActive(false);
+                keyGreen.SetActive(false);
+                keyOrange.SetActive(false);
+                restartScene.SetActive(true);
+                vidatxt.enabled = false;
+                ganaste.enabled = true;
+                MUSICAFONDO.enabled = false;
+            }
         }
     }
     IEnumerator dardoTimer()
